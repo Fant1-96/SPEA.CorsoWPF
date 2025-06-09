@@ -200,23 +200,31 @@ namespace CalculatorApp
         // Applica calcolo trigonometrico
         public static double TrigonometryCalculate(string function, double value)
         {
+            double rValue;
             switch (function.ToLower())
             {
                 case "sin":
-                    return Math.Sin(value);
+                    rValue = Math.Sin(value);
+                    break;
                 case "cos":
-                    return Math.Cos(value);
+                    rValue = Math.Cos(value);
+                    break;
                 case "tan":
-                    return Math.Tan(value);
+                    rValue = Math.Tan(value);
+                    break;
                 case "asin":
-                    return Math.Asin(value);
+                    rValue = Math.Asin(value);
+                    break;
                 case "acos":
-                    return Math.Acos(value);
+                    rValue = Math.Acos(value);
+                    break;
                 case "atan":
-                    return Math.Atan(value);
+                    rValue = Math.Atan(value);
+                    break;
                 default:
                     throw new ArgumentException("Funzione trigonometrica non riconosciuta.");
             }
+            return Math.Round(rValue, 10);
         }
     }
 }

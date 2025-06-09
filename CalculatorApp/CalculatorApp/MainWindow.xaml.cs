@@ -78,7 +78,7 @@ namespace CalculatorApp
 
             double result;
             bool ok = CalculatorLogic.Evaluate(expression, out result);
-
+            
             if (ok)
             {
                 result = CalculatorLogic.DegToRad(result);
