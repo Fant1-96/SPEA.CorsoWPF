@@ -45,7 +45,7 @@ namespace CalculatorApp
                     continue;
                 }
 
-                if ("+-*/^()√".Contains(c))
+                if ("+-*/^()√πe".Contains(c))
                 {
                     tokens.Add(c.ToString());
                     i++;
@@ -79,6 +79,12 @@ namespace CalculatorApp
             foreach (var token in tokens)
             {
                 if (double.TryParse(token, out _))
+                {
+                    output.Enqueue(token);
+                    continue;
+                }
+
+                if (token == "π" || token == "e")
                 {
                     output.Enqueue(token);
                     continue;
@@ -141,6 +147,18 @@ namespace CalculatorApp
                     continue;
                 }
 
+                if (token == "π")
+                {
+                    stack.Push(Math.PI);
+                    continue;
+                }
+
+                if (token == "e")
+                {
+                    stack.Push(Math.E);
+                    continue;
+                }
+
                 if (token == "√")
                 {
                     double a = stack.Pop();
@@ -165,6 +183,40 @@ namespace CalculatorApp
 
             if (stack.Count != 1) throw new Exception("Espressione non valida");
             return stack.Pop();
+        }
+
+        // Conversione angolare °→rad
+        public static double DegToRad(double deg)
+        {
+            return deg * Math.PI / 180.0;
+        }
+
+        // Conversione angolare rad→°
+        public static double RadToDeg(double rad)
+        {
+            return rad * 180.0 / Math.PI;
+        }
+
+        // Applica calcolo trigonometrico
+        public static double TrigonometryCalculate(string function, double value)
+        {
+            switch (function.ToLower())
+            {
+                case "sin":
+                    return Math.Sin(value);
+                case "cos":
+                    return Math.Cos(value);
+                case "tan":
+                    return Math.Tan(value);
+                case "asin":
+                    return Math.Asin(value);
+                case "acos":
+                    return Math.Acos(value);
+                case "atan":
+                    return Math.Atan(value);
+                default:
+                    throw new ArgumentException("Funzione trigonometrica non riconosciuta.");
+            }
         }
     }
 }

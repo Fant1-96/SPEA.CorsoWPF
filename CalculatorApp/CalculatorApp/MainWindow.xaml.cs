@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Collections.Generic;
+using System.Windows.Input;
 
 namespace CalculatorApp
 {
@@ -22,7 +23,7 @@ namespace CalculatorApp
             // Aggiorna l’espressione senza mai cancellare finché non si preme “=”
             expression += content switch
             {
-                "√" => "√",    // token radice
+              "√" => "√",     // token radice
                 _ => content
             };
 
@@ -69,6 +70,81 @@ namespace CalculatorApp
             // scorri all’ultima operazione
             if (history.Count > 0 && HistoryPanel.Visibility == Visibility.Visible)
                 HistoryList.ScrollIntoView(history[^1]);
+        }
+
+        private void DegToRadButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(expression)) return;
+
+            double result;
+            bool ok = CalculatorLogic.Evaluate(expression, out result);
+
+            if (ok)
+            {
+                result = CalculatorLogic.DegToRad(result);
+
+                Display.Text = result.ToString();
+                history.Add($"DEG({expression}) = RAD({result})");
+                HistoryList.ItemsSource = null;
+                HistoryList.ItemsSource = history;
+                expression = result.ToString(); // consente di continuare a calcolare
+            }
+            else
+            {
+                Display.Text = "Errore";
+                expression = "";
+            }
+        }
+
+        private void RadToDegButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(expression)) return;
+
+            double result;
+            bool ok = CalculatorLogic.Evaluate(expression, out result);
+
+            if (ok)
+            {
+                result = CalculatorLogic.RadToDeg(result);
+
+                Display.Text = result.ToString();
+                history.Add($"RAD({expression}) = DEG({result})");
+                HistoryList.ItemsSource = null;
+                HistoryList.ItemsSource = history;
+                expression = result.ToString(); // consente di continuare a calcolare
+            }
+            else
+            {
+                Display.Text = "Errore";
+                expression = "";
+            }
+        }
+
+        private void TrigonometryButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(expression)) return;
+
+            double result;
+            bool ok = CalculatorLogic.Evaluate(expression, out result);
+
+            if (ok)
+            {
+                string content = (string)((Button)sender).Content;
+                
+                expression = $"{content}({expression})"; // aggiorna l'espressione con la funzione trigonometrica
+                result = CalculatorLogic.TrigonometryCalculate(content, result);
+
+                Display.Text = result.ToString();
+                history.Add($"{expression} = {result}");
+                HistoryList.ItemsSource = null;
+                HistoryList.ItemsSource = history;
+                expression = result.ToString(); // consente di continuare a calcolare
+            }
+            else
+            {
+                Display.Text = "Errore";
+                expression = "";
+            }
         }
     }
 }
