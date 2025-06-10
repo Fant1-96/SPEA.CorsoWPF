@@ -68,5 +68,30 @@
                 <Button Content="Nuovo" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Click="NewOrder_Click"/>
             </Grid>
         </TabItem>
+        <TabItem Header="Resi">
+            <Grid>
+                <DataGrid x:Name="ReturnsGrid" AutoGenerateColumns="False" Margin="0,40,0,0">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+                        <DataGridTextColumn Header="Utente" Binding="{Binding User.UserName}"/>
+                        <DataGridTextColumn Header="Ordine" Binding="{Binding Order}"/>
+                        <DataGridTextColumn Header="Data" Binding="{Binding DateCreated}"/>
+                        <DataGridTextColumn Header="Importo rimborso" Binding="{Binding RefundAmount}"/>
+                        <DataGridTemplateColumn Header="Azioni">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Content="✎" Click="EditReturn_Click"/>
+                                        <Button Content="🗑" Margin="5,0,0,0" Click="DeleteReturn_Click"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Button Content="Aggiorna" HorizontalAlignment="Right" VerticalAlignment="Top" Width="75" Click="RefreshReturns_Click"/>
+                <Button Content="Nuovo" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Click="NewReturn_Click"/>
+            </Grid>
+        </TabItem>
     </TabControl>
 </Window>

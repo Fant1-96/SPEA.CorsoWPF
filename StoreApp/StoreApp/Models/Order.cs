@@ -9,5 +9,6 @@ namespace StoreApp.Models
         public ApplicationUser User { get; set; }
         public DateTime DateCreated { get; set; }
         public ICollection<OrderProduct> OrderProducts { get; set; } = new List<OrderProduct>();
+        public ICollection<Return> Returns { get; set; } = new List<Return>();
     }
 }

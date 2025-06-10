@@ -1,0 +1,15 @@
+<Window x:Class="StoreApp.ReturnEditWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="Reso" Height="400" Width="400">
+    <Grid Margin="10">
+        <StackPanel>
+            <Label Content="Utente"/>
+            <ComboBox x:Name="UserCombo" DisplayMemberPath="UserName" SelectionChanged="UserCombo_SelectionChanged"/>
+            <Label Content="Ordine"/>
+            <ComboBox x:Name="OrderCombo" DisplayMemberPath="OrderId"/>
+            <Label Content="Motivo"/>
+            <TextBox x:Name="ReasonBox"/>
+            <Label Content="Rimborso"/>
+            <TextBox x:Name="RefundBox"/>
+            <Button Content="Salva" Margin="0,10,0,0" Click="Save_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
