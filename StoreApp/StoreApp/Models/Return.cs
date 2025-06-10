@@ -11,8 +11,6 @@ namespace StoreApp.Models
         public int Id { get; set; }
         public Order Order { get; set; }
         public int OrderId { get; set; }
-        public ApplicationUser User { get; set; }
-        public string UserId { get; set; }
         public DateTime DateCreated { get; set; }
         public string Reason { get; set; }
         public decimal RefundAmount { get; set; }

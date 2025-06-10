@@ -12,7 +12,7 @@ using StoreApp.Data;
 namespace StoreApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250610080711_AddReturns")]
+    [Migration("20250610083340_AddReturns")]
     partial class AddReturns
     {
         /// <inheritdoc />
@@ -306,15 +306,9 @@ namespace StoreApp.Migrations
                     b.Property<decimal>("RefundAmount")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("OrderId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Returns");
                 });
@@ -412,15 +406,7 @@ namespace StoreApp.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("StoreApp.Models.ApplicationUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Order");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("StoreApp.Models.Order", b =>

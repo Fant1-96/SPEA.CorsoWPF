@@ -73,7 +73,7 @@
                 <DataGrid x:Name="ReturnsGrid" AutoGenerateColumns="False" Margin="0,40,0,0">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
-                        <DataGridTextColumn Header="Utente" Binding="{Binding User.UserName}"/>
+                        <DataGridTextColumn Header="Utente" Binding="{Binding Order.User.UserName}"/>
                         <DataGridTextColumn Header="Ordine" Binding="{Binding OrderId}"/>
                         <DataGridTextColumn Header="Data" Binding="{Binding DateCreated}"/>
                         <DataGridTextColumn Header="Importo rimborso" Binding="{Binding RefundAmount}"/>

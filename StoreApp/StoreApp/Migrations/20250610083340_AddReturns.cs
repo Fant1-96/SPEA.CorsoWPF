@@ -197,7 +197,6 @@ namespace StoreApp.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     OrderId = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Reason = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     RefundAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
@@ -206,17 +205,11 @@ namespace StoreApp.Migrations
                 {
                     table.PrimaryKey("PK_Returns", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Returns_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
-                    table.ForeignKey(
                         name: "FK_Returns_Orders_OrderId",
                         column: x => x.OrderId,
                         principalTable: "Orders",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -307,11 +300,6 @@ namespace StoreApp.Migrations
                 name: "IX_Returns_OrderId",
                 table: "Returns",
                 column: "OrderId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Returns_UserId",
-                table: "Returns",
-                column: "UserId");
         }
 
         /// <inheritdoc />

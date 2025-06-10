@@ -21,7 +21,7 @@ namespace StoreApp
             if (_return != null)
             {
                 ReasonBox.Text = _return.Reason;
-                UserCombo.SelectedItem = _return.UserId;
+                UserCombo.SelectedItem = _return.Order.User;
                 OrderCombo.SelectedItem = _return.OrderId;
             }
         }
@@ -38,10 +38,10 @@ namespace StoreApp
                 {
                     _return = new Return
                     {
-                        UserId = user.Id,
                         RefundAmount = refund,
                         DateCreated = System.DateTime.Now,
                         OrderId = order.Id,
+                        //Order = order,
                         Reason = ReasonBox.Text
                     };
                     _context.Returns.Add(_return);
@@ -49,8 +49,8 @@ namespace StoreApp
                 else
                 {
                     _return.Reason = ReasonBox.Text;
-                    _return.UserId = user.Id;
                     _return.OrderId= order.Id;
+                    //_return.Order = order;
                     _context.Returns.Update(_return);
                 }
                 _context.SaveChanges();
