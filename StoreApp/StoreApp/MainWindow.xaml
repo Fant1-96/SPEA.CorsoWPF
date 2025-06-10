@@ -74,7 +74,7 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
                         <DataGridTextColumn Header="Utente" Binding="{Binding User.UserName}"/>
-                        <DataGridTextColumn Header="Ordine" Binding="{Binding Order}"/>
+                        <DataGridTextColumn Header="Ordine" Binding="{Binding OrderId}"/>
                         <DataGridTextColumn Header="Data" Binding="{Binding DateCreated}"/>
                         <DataGridTextColumn Header="Importo rimborso" Binding="{Binding RefundAmount}"/>
                         <DataGridTemplateColumn Header="Azioni">

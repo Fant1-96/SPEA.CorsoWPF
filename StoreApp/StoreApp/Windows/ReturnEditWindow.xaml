@@ -4,7 +4,7 @@
             <Label Content="Utente"/>
             <ComboBox x:Name="UserCombo" DisplayMemberPath="UserName" SelectionChanged="UserCombo_SelectionChanged"/>
             <Label Content="Ordine"/>
-            <ComboBox x:Name="OrderCombo" DisplayMemberPath="OrderId"/>
+            <ComboBox x:Name="OrderCombo" DisplayMemberPath="Id"/>
             <Label Content="Motivo"/>
             <TextBox x:Name="ReasonBox"/>
             <Label Content="Rimborso"/>

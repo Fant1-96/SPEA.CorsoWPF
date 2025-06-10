@@ -56,7 +56,7 @@ namespace StoreApp
 
         private void NewReturn_Click(object sender, RoutedEventArgs e)
         {
-            var win = new OrderEditWindow(null);
+            var win = new ReturnEditWindow(null);
             if (win.ShowDialog() == true)
             {
                 LoadOrders();
